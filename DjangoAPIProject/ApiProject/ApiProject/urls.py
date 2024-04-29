@@ -22,8 +22,15 @@ urlpatterns = [
     path("book/",views.BookApiView.as_view()),
     path('student/', views.StudentAPIView.as_view(), name='student-api'),
     path('student/<int:id>/', views.StudentAPIView.as_view(), name='student-detail'),
+    # path('register/', views.UserRegistrationAPIView.as_view(), name='register'),
+    # path('login/', views.UserLoginAPIView.as_view(), name='login'),
+    # path('profile/', views.UserProfileAPIView.as_view(), name='profile'),
     
 ]
+
+# urls.py
+
+
 
 
 
