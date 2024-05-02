@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form validation in HTML & CSS | CodingNepal</title>
+  <link rel="stylesheet" href="login1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header>Login Form</header>
+    <form action="#">
+      <div class="field email">
+        <div class="input-area">
+          <input type="text" id="username" placeholder="User Name">
+          <i class="icon fas fa-envelope"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+        </div>
+        <div class="error error-txt">Email can't be blank</div>
+      </div>
+      <div class="field password">
+        <div class="input-area">
+          <input type="password" id="password" placeholder="Password">
+          <i class="icon fas fa-lock"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+        </div>
+        <div class="error error-txt">Password can't be blank</div>
+      </div>
+      
+      <div class="pass-txt"><a href="#">Forgot password?</a></div>
+      <input type="submit" value="Login" id="btnSubmit">
+    </form>
+    <div class="sign-txt">Not yet member? <a href="#">Signup now</a></div>
+  </div>
+
+  <script src="login1.js"></script>
+
+</body>
+<script>
+     $(document).ready(function() {
+        $('#btnSubmit').click(function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = $('#username').val();
+            const password = $('#password').val();
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json', // Set content type to JSON
+                url: "http://127.0.0.1:8000/login/",
+                data: JSON.stringify({  // Convert data to JSON string
+                    username: username,
+                    password: password
+                }),
+                error: function(xhr, status, error) {
+                    let errorMessage = '';
+                    for (let prop in xhr.responseJSON) {
+                        errorMessage += prop + ': ' + xhr.responseJSON[prop] + '\n';
+                    }
+                    alert(errorMessage);
+                },
+                success: function(response) {
+                    console.log(response);
+                    window.location.href = "home.html";
+                    // Redirect to another page or perform other actions upon successful login
+                }
+            });
+        });
+
+        // $('#togglePassword').click(function() {
+        //     const passwordInput = $('#password');
+        //     const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
+        //     passwordInput.attr('type', type);
+        //     $(this).toggleClass('fa-eye-slash');
+        // });
+    });
+
+
+</script>
+
+</html>

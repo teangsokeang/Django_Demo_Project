@@ -1,5 +1,21 @@
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.Serializer): 
+    # class Meta: 
+    #     model = User 
+    #     fields = ['username', 'password']
+    # def create(self, validated_data): 
+    #     user = User.objects.create(username=validated_data['username'])
+    #     user.set_password(validated_data['password'])
+    #     user.save()
+    #     return user
+
+    username = serializers.CharField(max_length=100)
+    password = serializers.CharField(max_length=100)
+
+
 
 class BookSerializer(serializers.Serializer):
     id=serializers.IntegerField(label="Enter Book Id")

@@ -25,7 +25,9 @@ urlpatterns = [
     # path('register/', views.UserRegistrationAPIView.as_view(), name='register'),
     # path('login/', views.UserLoginAPIView.as_view(), name='login'),
     # path('profile/', views.UserProfileAPIView.as_view(), name='profile'),
+    re_path('user_register/', views.UserRegistration.as_view(), name='user_register'),
     
+    path('login/', views.LoginAPIView.as_view(), name='api_login'),
 ]
 
 # urls.py
