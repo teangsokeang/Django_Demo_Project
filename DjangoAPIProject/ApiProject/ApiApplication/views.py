@@ -151,6 +151,25 @@ class StudentAPIView(APIView):
 
 # ApiApplication/views.py
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Student
+
+class StudentCountByMajorAPIView(APIView):
+    def get(self, request, format=None):
+        # Initialize a dictionary to store the count for each major
+        major_counts = {choice[0]: 0 for choice in Student.MAJOR_CHOICES}
+
+        # Query the database to count students for each major
+        for major, _ in Student.MAJOR_CHOICES:
+            count = Student.objects.filter(major=major).count()
+            major_counts[major] = count
+
+        return Response(major_counts, status=status.HTTP_200_OK)
+
+
+
 
 class StudentDetailView(DestroyAPIView):
     queryset = Student.objects.all()

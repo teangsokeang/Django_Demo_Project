@@ -27,7 +27,7 @@ class BookSerializer(serializers.Serializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['id', 'first_name', 'last_name', 'dob'] # Specify fields you want to include in the API response
+        fields = ['id', 'first_name', 'last_name', 'sex', 'dob', 'address', 'phone_number', 'email', 'major'] # Specify fields you want to include in the API response
 
 # serializers.py
 

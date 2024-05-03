@@ -28,6 +28,7 @@ urlpatterns = [
     re_path('user_register/', views.UserRegistration.as_view(), name='user_register'),
     
     path('login/', views.LoginAPIView.as_view(), name='api_login'),
+    path('count_by_major/', views.StudentCountByMajorAPIView.as_view(), name='student_count_by_major'),
 ]
 
 # urls.py

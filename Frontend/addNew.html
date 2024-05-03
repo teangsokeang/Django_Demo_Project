@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="addNew.css">
+     
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"> -->
+    <!-- <script src="dashboard.js"></script> -->
+
+    <title>Admin Dashboard Panel</title>
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <!-- <img src="/photo_2022-07-04_15-08-32.jpg" alt=""> -->
+            </div>
+
+            <span class="logo_name">ABC System</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="home.html" >
+                    <i class="fas fa-user"></i>
+                    <span class="link-name">Add New</span>
+                </a></li>
+                <!-- <li><a href="#">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="link-name">Analytics</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="link-name">Like</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-comments"></i>
+                    <span class="link-name">Comment</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-share-alt"></i>
+                    <span class="link-name">Share</span>
+                </a></li> -->
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="fas fa-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top" style="background-color: rgb(81, 148, 236);">
+            <i class="fas fa-bars sidebar-toggle" id="modebar"></i>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="text">Enroll New Student</span>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="container">
+            <header>Student Information</header>
+            <form action="#">
+                <div class="form first">
+                    <div class="details personal">
+                        
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>First Name</label>
+                                <input type="text" id="txtFirstName" placeholder="Enter your name" >
+                            </div>
+                            <div class="input-field">
+                                <label>Last Name</label>
+                                <input type="text" id="txtLastName" placeholder="Enter your name" >
+                            </div>
+                            <div class="input-field">
+                                <label>Date of Birth</label>
+                                <input type="date" id="txtDOB" placeholder="Enter birth date" >
+                            </div>
+                            <div class="input-field">
+                                <label>Email</label>
+                                <input type="text" id="txtEmail" placeholder="Enter your email" >
+                            </div>
+                            <div class="input-field">
+                                <label>Mobile Number</label>
+                                <input type="text" id="txtPhone" placeholder="Enter mobile number" >
+                            </div>
+                            <div class="input-field">
+                                <label>Address</label>
+                                <input type="text" id="txtAddress" placeholder="Enter your Address" >
+                            </div>
+                            <div class="input-field">
+                                <label>Gender</label>
+                                <select required id="txtSex">
+                                    <option disabled selected>Select gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                            <div class="input-field">
+                                <label>Major</label>
+                                <select required id="txtMajor">
+                                    <option disabled selected>Select Major</option>
+                                    <option>Fintech</option>
+                                    <option>Business IT</option>
+                                    <option>Computer Science</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="" id="btnSubmit">
+                        <span class="btnText">Add</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                    <!-- <button id="btnSubmit">add</button> -->
+                </div>
+        
+            </form>
+        </div>
+        
+    </section>
+
+
+    
+</body>
+<Script>
+    
+  
+    $('#btnSubmit').click(function () {
+      
+        var firstname = $('#txtFirstName').val();
+        var txtLastName = $('#txtLastName').val();
+        var txtDOB = $('#txtDOB').val();
+        var txtEmail = $('#txtEmail').val();
+        var txtPhone = $('#txtPhone').val();
+        var txtAddress = $('#txtAddress').val();
+        var txtSex = $('#txtSex').val();
+        var txtMajor = $('#txtMajor').val();
+        console.log(firstname);
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                // "id": idValue,
+                "first_name": firstname,
+                "last_name": txtLastName,
+                "dob": txtDOB,
+                "address": txtAddress,
+                "phone_number": txtPhone,
+                "email": txtEmail,
+                "major": txtMajor,
+                "sex": txtSex
+            },
+
+            url: "http://127.0.0.1:8000/student/",
+            error: function (xhr, status, error) {
+
+                var err_msg = ''
+                for (var prop in xhr.responseJSON) {
+                    err_msg += prop + ': ' + xhr.responseJSON[prop] + '\n';
+                }
+
+                alert(err_msg);
+            },
+            success: function (result) {
+                
+                
+                alert('Data Saved Successfully.');
+
+                $('#txtLastName').val("");
+                $('#txtFirstName').val("");
+                $('#txtDOB').val("");
+                $('#txtEmail').val("");
+                $('#txtPhone').val("");
+                $('#txtAddress').val("");
+                $('#txtSex').val("");
+                $('#txtMajor').val("");
+                
+               
+            }
+        });
+
+
+    });
+
+   
+
+
+
+
+
+</Script>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+     
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <script src="dashboard.js"></script>
+
+    <title>Admin Dashboard Panel</title>
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <!-- <img src="/photo_2022-07-04_15-08-32.jpg" alt=""> -->
+            </div>
+
+            <span class="logo_name">ABC System</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="addNew.html" >
+                    <i class="fas fa-user"></i>
+                    <span class="link-name">Add New</span>
+                </a></li>
+                <!-- <li><a href="#">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="link-name">Analytics</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="link-name">Like</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-comments"></i>
+                    <span class="link-name">Comment</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-share-alt"></i>
+                    <span class="link-name">Share</span>
+                </a></li> -->
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="fas fa-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top" style="background-color: rgb(81, 148, 236);">
+            <i class="fas fa-bars sidebar-toggle" id="modebar"></i>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="text">Dashboard</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="text">Fintech</span>
+                        <span class="number" id="txtFirstMajor"></span>
+                    </div>
+                    <div class="box box2">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="text">Business IT</span>
+                        <span class="number" id="txtSecondMajor"></span>
+                    </div>
+                    <div class="box box3">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="text">Computer Science</span>
+                        <span class="number" id="txtThirdMajor"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="fas fa-clock"></i>
+                    <span class="text">Recent Activity</span>
+                </div>
+                <div id="studentCountForFirstMajor">
+
+                </div>
+
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Major</th>
+                        <th scope="col">Action</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="divBody"></tbody>
+                  </table>
+                  
+                  
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Student Dialog -->
+    <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editStudentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editStudentModalLabel">Edit Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="padding-left: 20px;">
+                        <div class="form-group">
+                            <label for="editFirstName">First Name:</label>
+                            <input type="text" class="form-control" id="editFirstName">
+                        </div>
+                        <div class="form-group" style="padding-left: 10px;">
+                            <label for="editLastName">Last Name:</label>
+                            <input type="text" class="form-control" id="editLastName">
+                        </div>
+
+                    </div>
+                    
+                    
+                    <div class="row" style="padding-left: 20px;">
+                        <div class="form-group">
+                            <label for="editEmail">Email:</label>
+                            <input type="email" class="form-control" id="editEmail">
+                        </div>
+                        <div class="form-group" style="padding-left: 10px;">
+                            <label for="editMajor">Major:</label>
+                            <select class="form-control" id="editMajor">
+                                <option>Fintech</option>
+                                <option>Business IT</option>
+                                <option>Computer Science</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row" style="padding-left: 20px;">
+                        <div class="form-group">
+                            <label for="editPhoneNumber">Phone Number:</label>
+                            <input type="text" class="form-control" id="editPhoneNumber">
+                        </div>
+                        <div class="form-group" style="padding-left: 10px;">
+                            <label for="editAddress">Address:</label>
+                            <input type="text" class="form-control" id="editAddress">
+                        </div>
+
+                    </div>
+                    <div class="row" style="padding-left: 20px;">
+                        <div class="form-group">
+                            <label for="editSex">Sex:</label>
+                            <select class="form-control" id="editSex">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group"style="padding-left: 10px;">
+                            <label for="editDOB">DOB:</label>
+                            <input type="date" class="form-control" id="editDOB">
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<Script>
+    // $(document).ready(function () {
+    //     BindStudents();
+        
+    // });
+    BindStudents();
+    CountMajor();
+   
+    function BindStudents() {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "http://127.0.0.1:8000/student/", success: function (result) {
+                studentsData = result;
+                var totalCount = result.length;
+                console.log(totalCount)
+                var structureDiv = "";
+                for (let i = 0; i < totalCount; i++) {
+                    structureDiv += "<tr>" +
+                        "       <td>" + (i+1) + "</td>" +
+                        "       <td>" + result[i].first_name + "</td>" +
+                        "       <td>" + result[i].last_name + "</td>" +
+                        "       <td>" + result[i].sex + "</td>" +
+                        "       <td>" + result[i].email + "</td>" +
+                        "       <td>" + result[i].major + "</td>" +
+                        "       <td><button class='btn btn-primary' onclick='EditRow(" + result[i].id + ")' >Edit</button>|<button class='btn btn-danger' onclick='DeleteRow(" + result[i].id + ")'>Delete</button></td>" +
+                        "           </tr>";
+                }
+
+                $("#divBody").html(structureDiv);
+            
+            }
+        });
+
+    }
+
+    function CountMajor(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://127.0.0.1:8000/count_by_major/',  // API endpoint URL
+            dataType: 'json',
+            success: function(data) {
+                // Process the data received from the API
+                console.log(data);
+                var countForFirstMajor = data['Fintech']; // Accessing count for the first major
+                var countForSecondMajor = data['Business IT'];
+                var countForThirdMajor = data['Computer Science'];
+                $('#txtFirstMajor').text(countForFirstMajor);
+                $('#txtSecondMajor').text(countForSecondMajor);
+                $('#txtThirdMajor').text(countForThirdMajor);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+
+    }
+
+    function EditRow(id) {
+        // Find the student with the corresponding id
+        var student = studentsData.find(student => student.id === id);
+        if (student) {
+            console.log(student)
+            populateEditModal(student);
+            $('#editStudentModal').attr('data-student-id', id);
+            // Show the edit modal
+            $('#editStudentModal').modal('show');
+            
+        } else {
+            alert("Student not found.");
+        }
+    }
+    function populateEditModal(student) {
+        $('#editFirstName').val(student.first_name);
+        $('#editLastName').val(student.last_name);
+        $('#editEmail').val(student.email);
+        $('#editMajor').val(student.major);
+        $('#editAddress').val(student.address);
+        $('#editPhoneNumber').val(student.phone_number);
+        $('#editDOB').val(student.dob);
+        $('#editSex').val(student.sex);
+    }
+
+    // Show the confirmation dialog
+    function DeleteRow(id) {
+        // Show the confirmation dialog
+        var confirmed = window.confirm("Are you sure you want to delete this record?");
+        if (confirmed) {
+            // If confirmed, send the delete request
+            $.ajax({
+                type: 'DELETE',
+                dataType: 'json',
+                url: "http://127.0.0.1:8000/student/" + id + "/",
+                error: function (xhr, status, error) {
+                    var err_msg = '';
+                    for (var prop in xhr.responseJSON) {
+                        err_msg += prop + ': ' + xhr.responseJSON[prop] + '\n';
+                    }
+                    alert(err_msg);
+                },
+                success: function (result) {
+                    // If the deletion is successful, rebind the students list
+                    BindStudents();
+                    CountMajor();
+                }
+            });
+        } else {
+            // If not confirmed (cancel), do nothing
+            return;
+        }
+    }
+
+        // Close the edit modal and update student data when the Update button is clicked
+    $('#btnUpdate').click(function() {
+    // Retrieve updated data from the modal inputs
+        var id = $('#editStudentModal').attr('data-student-id');
+        var firstname = $('#editFirstName').val();
+        var txtLastName = $('#editLastName').val();
+        var txtDOB = $('#txtDOB').val();
+        var txtEmail = $('#editEmail').val();
+        var txtPhone = $('#editPhoneNumber').val();
+        var txtAddress = $('#editAddress').val();
+        var txtSex = $('#editSex').val();
+        var txtMajor = $('#editMajor').val();
+        // Create a data object with the updated student information
+        var updatedStudent = {
+            "first_name": firstname,
+            "last_name": txtLastName,
+            "dob": txtDOB,
+            "address": txtAddress,
+            "phone_number": txtPhone,
+            "email": txtEmail,
+            "major": txtMajor,
+            "sex": txtSex
+        };
+
+        // Send an AJAX request to update the student data
+        $.ajax({
+            type: 'PUT', // Use PUT method for updating data
+            url: "http://127.0.0.1:8000/student/" + id + "/", // URL of the API endpoint
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(updatedStudent), // Convert data to JSON format
+            success: function (response) {
+                // If update is successful, hide the modal and rebind the student list
+                $('#editStudentModal').modal('hide');
+                BindStudents();
+                alert('Student data updated successfully.');
+                CountMajor();
+            },
+            error: function (xhr, status, error) {
+                // If update fails, show error message
+                var err_msg = xhr.responseText;
+                alert("Error: " + err_msg);
+            }
+        });
+    });
+
+
+
+
+
+
+</Script>
+</html>
